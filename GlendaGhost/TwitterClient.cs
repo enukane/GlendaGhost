@@ -8,20 +8,23 @@ using System.Web;
 using System.IO;
 using System.Xml;
 using System.Threading;
-
 using System.Diagnostics;
 
-namespace TwitterClient
+namespace GlendaGhost
 {
-    class TwitterClient
+    public class TwitterClient
     {
         private string _id;
         private string _password;
         private long? _lastId;
+        private int _span = 30000;
 
         private Queue _messageQueue;
 
-        private HttpWebRequest _webreq;
+        TimerCallback _timerDelegate;
+        Timer _timer;
+
+        //private HttpWebRequest _webreq;
 
 
         public string Id
@@ -43,27 +46,38 @@ namespace TwitterClient
 
             _messageQueue = Queue.Synchronized(new Queue());
 
-            _webreq = (HttpWebRequest)WebRequest.Create("http://twitter.com/statuses/friends_timeline.xml?count=200");
-            _webreq.Credentials = new NetworkCredential(_id, _password);
+            
         }
 
         public void _UpdateQueue(object o)
         {
-            String text;
-            String userName;
-            String id_text;
+            String text="";
+            String userName="";
+            String id_text="";
             long id;
-            String date_text;
+            String date_text="";
             long? thisLastId=null;
 
             Debug.WriteLine("_UpdateQueue called");
 
-            HttpWebResponse webres = (HttpWebResponse)_webreq.GetResponse();
+            HttpWebRequest webreq = (HttpWebRequest)WebRequest.Create("http://twitter.com/statuses/friends_timeline.xml?count=120");
+            webreq.Credentials = new NetworkCredential(_id, _password);
+
+            HttpWebResponse webres = (HttpWebResponse)webreq.GetResponse();
 
             Stream stream = webres.GetResponseStream();
 
             XmlDocument xmlDocument = new XmlDocument();
-            xmlDocument.Load(stream);
+
+            try
+            {
+                xmlDocument.Load(stream);
+            }
+            catch (XmlException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return;
+            }
 
             XmlNodeList statusList = xmlDocument.SelectNodes("/statuses/status");
 
@@ -75,13 +89,12 @@ namespace TwitterClient
                 TweetMessage tMsg;
                 XmlNode statusNode = statusList[i];
 
-
                 id_text = statusNode.SelectSingleNode("id").InnerText;
                 id = long.Parse(id_text);
 
                 if (_lastId.HasValue)
                 {
-                    if (_lastId > id) // text with id is older than that with _lastId
+                    if (_lastId >= id) // text with id is older than that with _lastId
                     {
                         continue;
                     }
@@ -96,26 +109,34 @@ namespace TwitterClient
 
                 tMsg = new TweetMessage(userName, date_text, id_text, text);
 
+                Debug.WriteLine("Enqueued {0}", id.ToString());
                 _messageQueue.Enqueue(tMsg);
 
                 thisLastId = id;
             }
 
+
             if (thisLastId.HasValue)
             {
                 _lastId = thisLastId;
             }
-                /** Thread ends here **/
 
             Debug.WriteLine("_UpdateQueue : node in queue done");
-        }
 
+            Debug.WriteLine("Last one : " + date_text + " " + id_text + " " + text);
+
+            return;
+        }
 
         public void Start(int second)
         {
-            int span = second * 1000;
-            TimerCallback timerDelegate = new TimerCallback(_UpdateQueue);
-            Timer timer = new Timer(timerDelegate, null, 0, span);
+            _span = second * 1000;
+            
+            _timerDelegate = new TimerCallback(_UpdateQueue);
+            _timer = new Timer(_timerDelegate, null, 0, _span);
+
+
+
         }
 
         public TweetMessage GetMessage()

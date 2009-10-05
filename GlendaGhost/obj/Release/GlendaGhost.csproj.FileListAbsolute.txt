@@ -10,3 +10,7 @@ C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\Glend
 C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaGhost.csproj.GenerateResource.Cache
 C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaGhost.exe
 C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaGhost.pdb
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\bin\Release\Yedda.Twitter.dll
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\bin\Release\Yedda.Twitter.pdb
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\ConfigWindow.baml
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\ConfigWindow.g.cs

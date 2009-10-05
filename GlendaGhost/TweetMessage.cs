@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TwitterClient
+namespace GlendaGhost
 {
-    class TweetMessage
+    public class TweetMessage
     {
         private DateTime _dt;
         private String _userName;

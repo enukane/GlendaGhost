@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Diagnostics;
+using System.Threading;
+
 
 namespace GlendaGhost
 {
@@ -25,6 +27,17 @@ namespace GlendaGhost
         private Boolean isSpeechBalloonOn = false;
         private Boolean flag_complain = false;
         private DateTime prevMouseDownTime;
+
+        TwitterClient _tClient = null;
+
+        System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
+
+
+        public TwitterClient TwitterClient
+        {
+            get { return _tClient; }
+            set { _tClient = value; }
+        }
 
         public Window1()
         {
@@ -42,48 +55,18 @@ namespace GlendaGhost
             return messages[randomNum];
         }
 
-        public void ShowSpeechBalloon(string message)
+        public void ShowSpeechBalloon(string userName, string message)
         {
-            if (isSpeechBalloonOn)
-            {
-                glendaText.Content = message;
-            }
-            else
-            {
-                speechBalloon.Visibility = Visibility.Visible;
-                isSpeechBalloonOn = true;
-                glendaText.Content = message;
-            }
+            speechBalloon.Visibility = Visibility.Visible;
+            username_Textbox.Content = userName;
+            glendaTextBlock.Text = message;
         }
 
         public void HideSpeechBalloon()
         {
             Debug.WriteLine("HideSpeechBalloon");
-            if (isSpeechBalloonOn)
-            {
-                speechBalloon.Visibility = Visibility.Collapsed;
-                isSpeechBalloonOn = false;
-            }
-        }
-
-        public void SaySomething(object sender, MouseButtonEventArgs e)
-        {
-            Debug.WriteLine(">SaySomething");
-
-            if (flag_complain)
-            {
-                HideSpeechBalloon();
-                flag_complain = false;
-                DateTime nowDT = DateTime.Now;
-                TimeSpan ts = DateTime.Now - prevMouseDownTime;
-
-
-                return;
-            }
-            else
-            {
-                ShowSpeechBalloon(getRandomText());
-            }
+            speechBalloon.Visibility = Visibility.Collapsed;
+            isSpeechBalloonOn = false;
         }
 
         public void SayComplain(object sender, MouseButtonEventArgs e)
@@ -91,15 +74,14 @@ namespace GlendaGhost
             Debug.WriteLine(">SayComplain");
             flag_complain = true;
             prevMouseDownTime = DateTime.Now;
-            ShowSpeechBalloon("Hey! Don't touch ME!");
+            ShowSpeechBalloon("", "Hey! Don't touch ME!");
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+
+
+        private void _SetInitializePosition()
         {
-          
-
             System.Drawing.Rectangle rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
-
             System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.PrimaryScreen;
 
             int screenWidth = rect.Width;
@@ -114,20 +96,97 @@ namespace GlendaGhost
             Debug.WriteLine("after window size : " + this.Width + " " + this.Height);
         }
 
+        private TweetMessage _GetTolerantTimeMessage(int second)
+        {
+            TimeSpan tSpan;
+            DateTime nowDT;
+            TweetMessage tMsg;
+
+            while (true)
+            {
+                tMsg = _tClient.GetMessage();
+
+                if (tMsg == null)
+                {
+                    return null;
+                }
+
+                nowDT = DateTime.Now;
+
+                tSpan = nowDT - tMsg.DateTime;
+                double durSeconds = tSpan.TotalSeconds;
+
+                if (durSeconds < second)
+                {
+                    Debug.WriteLine("dur : {0}", durSeconds.ToString());
+                    return tMsg;
+                }
+            }
+        }
+
+        private void _TickEventHandler(object sender, EventArgs e)
+        {
+            if (_tClient == null)
+            {
+                return;
+            }
+
+            TweetMessage tMsg = _GetTolerantTimeMessage(180);
+            if (tMsg == null)
+            {
+                return;
+            }
+
+
+            String msg = tMsg.Text;
+
+            ShowSpeechBalloon(tMsg.UserName,msg);
+
+            return;
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _SetInitializePosition();
+
+            MouseLeftButtonDown += delegate { DragMove(); };
+
+            speechBalloon.Visibility = Visibility.Hidden;
+
+            _timer.Interval = 5000;
+            _timer.Tick += _TickEventHandler;
+            _timer.Enabled = false;
+        }
+
         private void MenuItem1_Click(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("MenuItem Clicked");
-            if (isSpeechBalloonOn)
-            {
-                Debug.WriteLine("Turn off the message");
-                HideSpeechBalloon();
-            }
+
+            Debug.WriteLine("Turn off the message");
+            HideSpeechBalloon();
+
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("Exit now");
             Environment.Exit(0);
+        }
+
+        private void ConfigWindow_Closed(object sender, EventArgs e)
+        {
+            // activate speechBox
+            _timer.Enabled = true;
+        }
+
+        private void MenuItemConfig_Click(object sender, RoutedEventArgs e)
+        {
+            ConfigWindow cwindow = new ConfigWindow();
+            //cwindow.data = somedata
+            cwindow.MainWindow = this;
+            cwindow.Closed += ConfigWindow_Closed;
+            cwindow.Show();
         }
     }
 }
