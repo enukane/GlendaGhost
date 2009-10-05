@@ -105,7 +105,7 @@ namespace GlendaGhost
                 // -> push in to queue
                 date_text = statusNode.SelectSingleNode("created_at").InnerText;
                 text = statusNode.SelectSingleNode("text").InnerText;
-                userName = statusNode.SelectSingleNode("user/name").InnerText;
+                userName = statusNode.SelectSingleNode("user/screen_name").InnerText;
 
                 tMsg = new TweetMessage(userName, date_text, id_text, text);
 

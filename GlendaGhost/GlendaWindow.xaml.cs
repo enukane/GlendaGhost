@@ -139,7 +139,7 @@ namespace GlendaGhost
 
 
             String msg = tMsg.Text;
-
+            Debug.WriteLine("Message Display Updated");
             ShowSpeechBalloon(tMsg.UserName,msg);
 
             return;
