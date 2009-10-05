@@ -10,3 +10,5 @@ C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\Glend
 C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Debug\GlendaGhost.pdb
 C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Debug\GlendaWindow.baml
 C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Debug\GlendaWindow.g.cs
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\bin\Debug\Yedda.Twitter.dll
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\bin\Debug\Yedda.Twitter.pdb
