@@ -23,7 +23,9 @@ namespace GlendaGhost
     public partial class Window1 : Window
     {
         private Boolean isSpeechBalloonOn = false;
-        
+        private Boolean flag_complain = false;
+        private DateTime prevMouseDownTime;
+
         public Window1()
         {
             InitializeComponent();
@@ -66,13 +68,30 @@ namespace GlendaGhost
 
         public void SaySomething(object sender, MouseButtonEventArgs e)
         {
-            Debug.WriteLine("say something");
+            Debug.WriteLine(">SaySomething");
 
-            ShowSpeechBalloon(getRandomText());
+            if (flag_complain)
+            {
+                HideSpeechBalloon();
+                flag_complain = false;
+                DateTime nowDT = DateTime.Now;
+                TimeSpan ts = DateTime.Now - prevMouseDownTime;
+
+                ts.Seconds;
+
+                return;
+            }
+            else
+            {
+                ShowSpeechBalloon(getRandomText());
+            }
         }
 
         public void SayComplain(object sender, MouseButtonEventArgs e)
         {
+            Debug.WriteLine(">SayComplain");
+            flag_complain = true;
+            prevMouseDownTime = DateTime.Now;
             ShowSpeechBalloon("Hey! Don't touch ME!");
         }
 
@@ -80,7 +99,7 @@ namespace GlendaGhost
         {
             MouseLeftButtonUp += this.SaySomething;
             MouseLeftButtonDown += SayComplain;
-            MouseLeftButtonDown += delegate { DragMove(); };
+            MouseLeftButtonDown += delegate {DragMove(); };
            
 
             System.Drawing.Rectangle rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
@@ -107,6 +126,12 @@ namespace GlendaGhost
                 Debug.WriteLine("Turn off the message");
                 HideSpeechBalloon();
             }
+        }
+
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Exit now");
+            Environment.Exit(0);
         }
     }
 }
