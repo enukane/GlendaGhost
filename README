@@ -1,6 +1,13 @@
 -- program name --
-GlendaGhost
+GlendaGhost - TwitterClient
 
 -- WTF is this --
 always show Glenda on top of your desktop,
 works like ukagala( http://en.wikipedia.org/wiki/Ukagaka )... maybe in future
+
+In addition, on this branch, it works as twitter client.
+Currently it does not support posting tweets, only for viewing.
+
+-- dedication --
+Thanks for @d_kami for helping & advising me on programming,
+and other colleagues in softlab.
