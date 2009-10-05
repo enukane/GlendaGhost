@@ -1,0 +1,12 @@
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\bin\Release\GlendaGhost.exe
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\bin\Release\GlendaGhost.pdb
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaWindow.baml
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaWindow.g.cs
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\App.g.cs
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaGhost_MarkupCompile.cache
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaGhost.g.resources
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaGhost.Properties.Resources.resources
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaGhost.csproj.GenerateResource.Cache
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaGhost.exe
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Release\GlendaGhost.pdb
