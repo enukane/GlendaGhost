@@ -19,12 +19,12 @@
                 </ContextMenu>
             </Image.ContextMenu>
         </Image>
-            <Canvas Canvas.Left="0" Canvas.Top="0" Height="297" Name="speechBalloon" Width="501" Visibility="Hidden">
+            <Canvas Canvas.Left="0" Canvas.Top="0" Height="297" Name="speechBalloon" Width="501" Visibility="Visible">
             <Ellipse Canvas.Left="21" Canvas.Top="46" Height="99" Name="ellipse1" Stroke="Black" Width="438" Fill="White" />
             <Ellipse Canvas.Left="89" Canvas.Top="152" Height="39" Name="ellipse2" Stroke="Black" Width="106" Fill="White" />
             <Ellipse Canvas.Left="148" Canvas.Top="202" Height="29" Name="ellipse3" Stroke="Black" Width="62" Fill="White" />
             <Ellipse Canvas.Left="198" Canvas.Top="237" Height="18" Name="ellipse4" Stroke="Black" Width="38" Fill="White" />
-            <Label Canvas.Left="89" Canvas.Top="74" Height="47" Name="glendaText" Width="304" FontSize="30" HorizontalContentAlignment="Center"></Label>
+            <Label Canvas.Left="57" Canvas.Top="71" Height="50" Name="glendaText" Width="361" FontSize="18" HorizontalContentAlignment="Left"></Label>
         </Canvas>
     </Canvas>
 </Window>
