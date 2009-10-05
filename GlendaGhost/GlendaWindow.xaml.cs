@@ -77,7 +77,6 @@ namespace GlendaGhost
                 DateTime nowDT = DateTime.Now;
                 TimeSpan ts = DateTime.Now - prevMouseDownTime;
 
-                ts.Seconds;
 
                 return;
             }
@@ -97,10 +96,7 @@ namespace GlendaGhost
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MouseLeftButtonUp += this.SaySomething;
-            MouseLeftButtonDown += SayComplain;
-            MouseLeftButtonDown += delegate {DragMove(); };
-           
+          
 
             System.Drawing.Rectangle rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
 
