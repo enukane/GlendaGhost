@@ -28,6 +28,9 @@ namespace GlendaGhost
         private Boolean flag_complain = false;
         private DateTime prevMouseDownTime;
 
+        private Boolean isHideMessage = false;
+        private Boolean isStopMessage = false;
+
         TwitterClient _tClient = null;
 
         System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
@@ -44,28 +47,16 @@ namespace GlendaGhost
             InitializeComponent();
         }
 
-        protected string getRandomText()
-        {
-            String[] messages = new String[] { "Hello! I'm Glenda!", "SUCCEEESSS!", "NO ERROR!!" };
-            int length = messages.Length;
-
-            Random rnd = new Random();
-            int randomNum = rnd.Next(length);
-
-            return messages[randomNum];
-        }
-
         public void ShowSpeechBalloon(string userName, string message)
         {
             speechBalloon.Visibility = Visibility.Visible;
-            username_Textbox.Content = userName;
-            glendaTextBlock.Text = message;
+            tweetTextBlock.Text = userName + ":\n" + message;
         }
 
         public void HideSpeechBalloon()
         {
             Debug.WriteLine("HideSpeechBalloon");
-            speechBalloon.Visibility = Visibility.Collapsed;
+            speechBalloon.Visibility = Visibility.Hidden;
             isSpeechBalloonOn = false;
         }
 
@@ -134,16 +125,23 @@ namespace GlendaGhost
             TweetMessage tMsg = _GetTolerantTimeMessage(180);
             if (tMsg == null)
             {
+                HideSpeechBalloon();
                 return;
             }
 
-
             String msg = tMsg.Text;
-            Debug.WriteLine("Message Display Updated");
-            ShowSpeechBalloon(tMsg.UserName,msg);
+
+            if (isHideMessage || isStopMessage)
+            {
+                Debug.WriteLine("Message Display Hidden or Stopped");
+            }
+            else
+            {
+                Debug.WriteLine("Message Display Updated");
+                ShowSpeechBalloon(tMsg.UserName, msg);
+            }
 
             return;
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -154,7 +152,7 @@ namespace GlendaGhost
 
             speechBalloon.Visibility = Visibility.Hidden;
 
-            _timer.Interval = 5000;
+            _timer.Interval = 10000;
             _timer.Tick += _TickEventHandler;
             _timer.Enabled = false;
         }
@@ -187,6 +185,36 @@ namespace GlendaGhost
             cwindow.MainWindow = this;
             cwindow.Closed += ConfigWindow_Closed;
             cwindow.Show();
+        }
+
+
+
+        private void MenuItem_TweetStart_Click(object sender, RoutedEventArgs e)
+        {
+            isHideMessage = false;
+            MenuItem_TweetStart.IsEnabled = false;
+        }
+
+
+        private void MenuItem_TweetStop_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isStopMessage) // ongoing -> stop
+            {
+                isStopMessage = true;
+                MenuItem_TweetStop.Header = @"再開";
+            }
+            else // stop -> restart
+            {
+                isStopMessage = false;
+                MenuItem_TweetStop.Header = @"一時停止";
+            }
+        }
+
+        private void MenuItem_TweetHide_Click(object sender, RoutedEventArgs e)
+        {
+            isHideMessage = true;
+            HideSpeechBalloon();
+            MenuItem_TweetStart.IsEnabled = true;
         }
     }
 }

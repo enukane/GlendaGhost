@@ -14,3 +14,5 @@ C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\Glend
 C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\bin\Debug\Yedda.Twitter.pdb
 C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Debug\ConfigWindow.baml
 C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Debug\ConfigWindow.g.cs
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\GlendaGhost\obj\Debug\GlendaGhost_MarkupCompile.lref
