@@ -37,7 +37,7 @@ namespace GlendaGhost
             String username = username_textBox.Text;
             String password = passwordBox.Password;
             _tClient = new TwitterClient(username, password, 120);
-            _tClient.Start(30);
+            //_tClient.Start(30);
             _mainWindow.TwitterClient = _tClient;
             this.Close();
         }

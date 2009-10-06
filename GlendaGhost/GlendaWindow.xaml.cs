@@ -35,6 +35,16 @@ namespace GlendaGhost
 
         System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
 
+        private static String[] __randomMessages = new String[] {
+            @"アイム　セキュアァァ",
+            @"バァイ、ディィフォォルト",
+            @"俄には信じがたい",
+            @"事件はサーバで起こってるんじゃない！",
+            @"人智を超えた最適化",
+            @"気合いと根性でプログラムが書けるなら苦労はしないよ"
+        };
+
+        private static int __rndMsgLength = __randomMessages.Length;
 
         public TwitterClient TwitterClient
         {
@@ -122,6 +132,24 @@ namespace GlendaGhost
                 return;
             }
 
+            Random rnd = new Random();
+
+            int num = rnd.Next(__rndMsgLength);
+
+            String msg = __randomMessages[num];
+
+            if (isHideMessage || isStopMessage)
+            {
+                Debug.WriteLine("Message Posting & Displaying Hidden or Stopped");
+            }else
+            {
+                Debug.WriteLine("Message Posting & Displaying");
+                ShowSpeechBalloon("Glenda", msg);
+                _tClient.PostMessage(msg);
+            }
+
+
+            /*
             TweetMessage tMsg = _GetTolerantTimeMessage(180);
             if (tMsg == null)
             {
@@ -140,7 +168,7 @@ namespace GlendaGhost
                 Debug.WriteLine("Message Display Updated");
                 ShowSpeechBalloon(tMsg.UserName, msg);
             }
-
+            */
             return;
         }
 
@@ -152,7 +180,7 @@ namespace GlendaGhost
 
             speechBalloon.Visibility = Visibility.Hidden;
 
-            _timer.Interval = 10000;
+            _timer.Interval = 30000;
             _timer.Tick += _TickEventHandler;
             _timer.Enabled = false;
         }
