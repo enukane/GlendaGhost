@@ -4,37 +4,30 @@
     xmlns:custom="clr-namespace:GlendaGhost"
     Title="GlendaWindow" Height="423" Width="665" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize" Topmost="True"
         Loaded="Window_Loaded" Icon="/GlendaGhost;component/logo.ico" ShowInTaskbar="False" >
-    
+
     <Window.Resources>
         <LinearGradientBrush x:Key="MessageOutBackground"
-												 StartPoint="0.5,0"
-												 EndPoint="0.5,1">
-            <GradientStop Offset="0"
-										Color="LightGoldenrodYellow"/>
-            <GradientStop Offset="1"
-										Color="Orange"/>
+							StartPoint="0.5,0"
+							EndPoint="0.5,1">
+            <GradientStop Offset="0" Color="LightGoldenrodYellow"/>
+            <GradientStop Offset="1" Color="Orange"/>
         </LinearGradientBrush>
         <LinearGradientBrush x:Key="Hilight"
-												 StartPoint="0.5,0"
-												 EndPoint="0.5,0.25">
-            <GradientStop Offset="0"
-										Color="#cfffffff"/>
-            <GradientStop Offset="1"
-										Color="Transparent"/>
+                             StartPoint="0.5,0"
+							 EndPoint="0.5,0.25">
+            <GradientStop Offset="0" Color="#cfffffff"/>
+            <GradientStop Offset="1" Color="Transparent"/>
         </LinearGradientBrush>
-
         <LinearGradientBrush x:Key="HilightBottom"
-												 StartPoint="0.5,1"
-												 EndPoint="0.5,0.75">
-            <GradientStop Offset="0"
-										Color="#cfffffff"/>
-            <GradientStop Offset="1"
-										Color="Transparent"/>
+							 StartPoint="0.5,1"
+							 EndPoint="0.5,0.75">
+            <GradientStop Offset="0" Color="#cfffffff"/>
+            <GradientStop Offset="1" Color="Transparent"/>
         </LinearGradientBrush>
     </Window.Resources>
 
     <Canvas Name="main_canvas" Height="391" Width="646">
-        <Canvas Canvas.Left="50" Canvas.Top="0" Height="250" Name="speechBalloon" Width="390" Visibility="Hidden">            
+        <Canvas Canvas.Left="50" Canvas.Top="0" Height="250" Name="speechBalloon" Width="390" Visibility="Hidden">
             <custom:BalloonDecorator x:Name="Balloon" 
                                      Background="{StaticResource MessageOutBackground}" 
                                      PointerLength="30" 
@@ -45,12 +38,12 @@
                                      Canvas.Left="51" 
                                      Height="221" 
                                      Width="285">
-            <Border Background="{StaticResource Hilight}" CornerRadius="5">
-                <Border Background="{StaticResource HilightBottom}" CornerRadius="5">
-                    <TextBlock Name="tweetTextBlock" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" TextWrapping="Wrap" Margin="10" FontSize="20" />
+                <Border Background="{StaticResource Hilight}" CornerRadius="5">
+                    <Border Background="{StaticResource HilightBottom}" CornerRadius="5">
+                        <TextBlock Name="tweetTextBlock" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Italic" TextWrapping="Wrap" Margin="10" FontSize="20" />
 				</Border>
 
-            </Border>
+                </Border>
                 <custom:BalloonDecorator.ContextMenu>
                     <ContextMenu>
                         <MenuItem x:Name="MenuItem_TweetStop" Header="一時停止" Click="MenuItem_TweetStop_Click"/>
@@ -62,7 +55,7 @@
         <Image Name="image1" Stretch="Fill" Source="/GlendaGhost;component/glenda.PNG" Height="315" Canvas.Left="389" Canvas.Top="76" Width="257">
             <Image.ContextMenu>
                 <ContextMenu FontSize="15">
-                  <!--  <MenuItem x:Name="MenuItem1" Header="吹き出しを消す" Click="MenuItem1_Click"></MenuItem> -->
+                    <!--  <MenuItem x:Name="MenuItem1" Header="吹き出しを消す" Click="MenuItem1_Click"></MenuItem> -->
                     <MenuItem x:Name="MenuItemConfig" Header="設定" Click="MenuItemConfig_Click"></MenuItem>
                     <MenuItem x:Name="MenuItem_TweetStart" Header="Tweet表示" IsEnabled="False" Click="MenuItem_TweetStart_Click" />
                     <MenuItem x:Name="MenuItem2" Header="なんにもしないよ！"></MenuItem>

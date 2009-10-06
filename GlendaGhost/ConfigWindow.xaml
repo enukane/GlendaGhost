@@ -4,7 +4,7 @@
     Title="ConfigWindow" Height="329" Width="366" Icon="/GlendaGhost;component/logo.ico">
     <Grid Background="WhiteSmoke">
         
-        <TabControl Name="tabControl1" SelectedIndex="1" AllowDrop="False">
+        <TabControl Name="tabControl1" SelectedIndex="0" AllowDrop="False">
             <TabItem Header="アカウント情報">
                 <Grid Margin="0,23,0,45" Name="grid1" Width="322" Height="206">
                     <Grid.ColumnDefinitions>
@@ -21,8 +21,8 @@
                 </Grid>
                 
             </TabItem>
-            <TabItem Header="設定">
-                <Canvas>
+            <TabItem Header="設定" OverridesDefaultStyle="True">
+                <Canvas Height="255">
                     <Label Canvas.Left="44" Canvas.Top="22" Height="28" Name="label3" Width="120">Label</Label>
                     <Label Canvas.Left="44" Canvas.Top="121" Height="28" Name="label4" Width="120">Label</Label>
                     <TextBox Canvas.Left="44" Canvas.Top="76" Height="23" Name="textBox1" Width="120" />

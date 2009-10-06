@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Specialized;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -128,6 +129,48 @@ namespace TwitterClient
             {
                 return (TweetMessage)_messageQueue.Dequeue();
             }
+        }
+
+
+        private string _HttpPostString(string url, NameValueCollection nvc)
+        {
+            string url_ = url + "?";
+            byte[] res;
+
+            WebClient client = new WebClient();
+            client.Encoding = Encoding.UTF8;
+
+            client.Credentials = new NetworkCredential(_id, _password);
+
+            foreach (string key in nvc.Keys)
+            {
+                url_ += key + "=" + HttpUtility.UrlEncode(nvc[key]) + "&";
+            }
+
+            res = client.UploadData(url_, Encoding.Default.GetBytes(""));
+
+            return Encoding.UTF8.GetString(res);
+        }
+
+        public void PostMessage(string message)
+        {
+            try
+            {
+                NameValueCollection nvc = new NameValueCollection();
+
+                nvc.Add("status", message);
+                nvc.Add("source", "GlendaViewer");
+
+                string res = _HttpPostString("http://twitter.com/statuses/update.xml", nvc);
+
+                Debug.WriteLine(res);
+                return;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Failed to post : " + ex.Message);
+            }
+
         }
 
     }
