@@ -133,7 +133,7 @@ namespace GlendaGhost {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/GlendaGhost;component/configwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/GlendaGhostBot;component/configwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\ConfigWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

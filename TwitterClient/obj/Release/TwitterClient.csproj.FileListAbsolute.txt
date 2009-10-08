@@ -1,0 +1,5 @@
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\TwitterClient\bin\Release\TwitterClient.exe
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\TwitterClient\bin\Release\TwitterClient.pdb
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\TwitterClient\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\TwitterClient\obj\Release\TwitterClient.exe
+C:\Documents and Settings\nkaneko\My Documents\Visual Studio 2008\Projects\GlendaGhost\TwitterClient\obj\Release\TwitterClient.pdb

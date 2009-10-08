@@ -141,7 +141,7 @@ namespace GlendaGhost {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/GlendaGhost;component/glendawindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/GlendaGhostBot;component/glendawindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\GlendaWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

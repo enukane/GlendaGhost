@@ -180,9 +180,11 @@ namespace GlendaGhost
 
             speechBalloon.Visibility = Visibility.Hidden;
 
-            _timer.Interval = 30000;
+            int interval_msec = 10*60 * 1000;
+            _timer.Interval = interval_msec;
             _timer.Tick += _TickEventHandler;
             _timer.Enabled = false;
+            Debug.WriteLine("Timer set");
         }
 
         private void MenuItem1_Click(object sender, RoutedEventArgs e)
